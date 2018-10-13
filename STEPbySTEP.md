@@ -11,37 +11,52 @@ https://github.com/0xdead4ead/beast_http_server
     * Dockerfile to create our build box
     * Volume to be able to edit on our host machine
     * Building the examples
+        * _docker run -ti -v ~/Desktop/beast:/usr/beast -p 8080:80 beastbox:latest bash_
+        * _cd beast_http_server_
+        * _mkdir build_
+        * _cd build_
+        * _cmake .._
+        * _make_
     * First attempt at running the examples
+        * _examples/ex1_server/ex1_server_
+        * ctrl-c to exit
     * Fixing the examples
+        * Address must be 0.0.0.0
+        * Port should be read from an environment variable
+        * To rebuild, run make again
+        * _export PORT=80_
+        * _examples/ex1_server/ex1_server_
     * Exposing a port
     * Creating an Environment variable
 * Heroku
     * Containerize it
         * Show running containers 
-            * docker ps
+            * _docker ps_
         * Copy files from host to container
-            * docker cp . <id>:/usr/beastweb
-    * heroku login
+            * _docker cp . <id>:/usr/beastweb_
+        * Persist changes to container
+            * _docker commit <container id> hello_crow:latest_
+    * _heroku login_
         * heroku: Enter your login credentials
         *   Email [rockncoder@gmail.com]:
         * Password: ***********
         * Two-factor code: ******
         * Logged in as rockncoder@gmail.com  
-    * heroku container:login
+    * _heroku container:login_
         * Login Succeeded
-    * heroku create
+    * _heroku create_
         * Creating app... done, ⬢ floating-headland-31085
         * https://floating-headland-31085.herokuapp.com/ |https://git.heroku.com/floating-headland-31085.git
-    * docker build -t hello_beast .
+    * _docker build -t hello_beast ._
         * Successfully tagged hello_beast:latest
-    * heroku container:push web -a floating-headland-31085
+    * _heroku container:push web -a floating-headland-31085_
         * Your image has been successfully pushed. You can now release it with the 'container:release' command.
-    * heroku container:release web -a floating-headland-31085
+    * _heroku container:release web -a floating-headland-31085_
         * Releasing images web to floating-headland-31085... done
     * Launch the app
-        * heroku open -a floating-headland-31085
+        * _heroku open -a floating-headland-31085_
     * View our app's logs
-        * heroku logs -a floating-headland-31085
+        * _heroku logs -a floating-headland-31085_
      
 
 
