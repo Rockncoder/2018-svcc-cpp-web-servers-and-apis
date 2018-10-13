@@ -1,6 +1,54 @@
-#Step by Step
+# Step by Step
 
 https://github.com/0xdead4ead/beast_http_server
+
+* Background info 
+    * Me
+    * C++ Web Frameworks
+    * Crow
+    * Beast
+* Docker
+    * Dockerfile to create our build box
+    * Volume to be able to edit on our host machine
+    * Building the examples
+    * First attempt at running the examples
+    * Fixing the examples
+    * Exposing a port
+    * Creating an Environment variable
+* Heroku
+    * Containerize it
+        * Show running containers 
+            * docker ps
+        * Copy files from host to container
+            * docker cp . <id>:/usr/beastweb
+    * heroku login
+        * heroku: Enter your login credentials
+        *   Email [rockncoder@gmail.com]:
+        * Password: ***********
+        * Two-factor code: ******
+        * Logged in as rockncoder@gmail.com  
+    * heroku container:login
+        * Login Succeeded
+    * heroku create
+        * Creating app... done, ⬢ floating-headland-31085
+        * https://floating-headland-31085.herokuapp.com/ |https://git.heroku.com/floating-headland-31085.git
+    * docker build -t hello_beast .
+        * Successfully tagged hello_beast:latest
+    * heroku container:push web -a floating-headland-31085
+        * Your image has been successfully pushed. You can now release it with the 'container:release' command.
+    * heroku container:release web -a floating-headland-31085
+        * Releasing images web to floating-headland-31085... done
+    * Launch the app
+        * heroku open -a floating-headland-31085
+    * View our app's logs
+        * heroku logs -a floating-headland-31085
+     
+
+
+
+
+
+## Random Notes:
 
 ##Docker
 One of the most painful parts of working with C++ is getting your environment setup. To make this process as painless as possible, I

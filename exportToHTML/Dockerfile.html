@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Dockerfile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7f0055; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #333333; font-weight: bold;}
+.s3 { color: #333333;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dockerfile</font>
+</center></td></tr></table>
+<pre><span class="s0">FROM </span>ubuntu:<span class="s2">18.10</span>
+
+<span class="s0">RUN </span>apt-get <span class="s0">-</span>qq update <span class="s0">&amp;&amp; </span>apt-get <span class="s0">-</span>qq upgrade
+<span class="s0">WORKDIR /</span>usr<span class="s0">/</span>src
+<span class="s0">RUN </span>apt-get <span class="s0">-</span>qq install libboost-all-dev cmake build-essential \ 
+  libtcmalloc-minimal4 libssl-dev openssl git <span class="s0">&amp;&amp; </span>\ 
+  ln <span class="s0">-</span>s <span class="s0">/</span>usr<span class="s0">/</span>lib<span class="s0">/</span>libtcmalloc_minimal<span class="s3">.</span>so<span class="s2">.4 </span><span class="s0">/</span>usr<span class="s0">/</span>lib<span class="s0">/</span>libtcmalloc_minimal<span class="s3">.</span>so <span class="s0">&amp;&amp; </span>\ 
+  git clone https:<span class="s0">//</span>github<span class="s3">.</span>com<span class="s0">/</span>nlohmann<span class="s0">/</span>json<span class="s3">.</span>git <span class="s0">&amp;&amp; </span>\ 
+  git clone https:<span class="s0">//</span>github<span class="s3">.</span>com<span class="s0">/</span>nlohmann<span class="s0">/</span>fifo_map<span class="s3">.</span>git <span class="s0">&amp;&amp; </span>\ 
+  git clone https:<span class="s0">//</span>github<span class="s3">.</span>com<span class="s0">/</span>0xdead4ead<span class="s0">/</span>beast_http_server<span class="s3">.</span>git <span class="s0">&amp;&amp; </span>\ 
+  mkdir <span class="s0">-</span>p <span class="s0">/</span>usr<span class="s0">/</span>include<span class="s0">/</span>nlohmann<span class="s0">/</span>json<span class="s0">/</span>single_include <span class="s0">&amp;&amp; </span>\ 
+  mkdir <span class="s0">-</span>p <span class="s0">/</span>usr<span class="s0">/</span>include<span class="s0">/</span>nlohmann<span class="s0">/</span>fifo_map <span class="s0">&amp;&amp; </span>\ 
+  cp <span class="s0">-</span>r json<span class="s0">/</span>single_include <span class="s0">/</span>usr<span class="s0">/</span>include<span class="s0">/</span>nlohmann<span class="s0">/</span>json <span class="s0">&amp;&amp; </span>\ 
+  cp <span class="s0">-</span>r fifo_map<span class="s0">/</span>src <span class="s0">/</span>usr<span class="s0">/</span>include<span class="s0">/</span>nlohmann<span class="s0">/</span>fifo_map
+<span class="s0">EXPOSE </span><span class="s2">8080</span>:<span class="s2">80</span>
+</pre>
+</body>
+</html>
